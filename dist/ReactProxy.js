@@ -1918,11 +1918,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	   */
 	  function proxyMethod(name) {
 	    // Wrap to always call the current version
-	    var proxiedMethod = function () {
+	    var proxiedMethod = function proxiedMethod() {
 	      if (typeof current[name] === 'function') {
 	        return current[name].apply(this, arguments);
 	      }
-	    }.bind(this);
+	    };
 
 	    // Copy properties of the original function, if anyat l
 	    (0, _assign2.default)(proxiedMethod, current[name]);

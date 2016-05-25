@@ -29,7 +29,7 @@ export default function createPrototypeProxy() {
       if (typeof current[name] === 'function') {
         return current[name].apply(this, arguments);
       }
-    }.bind(this);
+    };
 
     // Copy properties of the original function, if anyat l
     assign(proxiedMethod, current[name]);

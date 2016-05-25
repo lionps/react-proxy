@@ -27,15 +27,15 @@ export default function createPrototypeProxy() {
     // Wrap to always call the current version
     const proxiedMethod = function () {
       if (typeof current[name] === 'function') {
-        return current[name].apply(current, arguments);
+        return current[name].apply(this, arguments);
       }
-    };
+    }.bind(this);
 
     // Copy properties of the original function, if anyat l
     assign(proxiedMethod, current[name]);
     proxiedMethod.toString = proxyToString(name);
 
-      proxiedMethod.bind = function boundProxiedMethod() {
+    proxiedMethod.bind = function boundProxiedMethod() {
       return Function.prototype.bind.apply(function() {
         return current[name].apply(this, arguments);
       }, arguments);
